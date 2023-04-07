@@ -20,7 +20,7 @@ app.MapGet("/GetAllCoupans", () =>
 {
     return Results.Ok(CoupanStore.coupansList.ToList());
 }
-).Produces<Coupan>(200).Produces(400);
+).AddEndpointFilter<AuthorizationFilter>().Produces<Coupan>(200).Produces(404).Produces(400); ;
 
 app.MapGet("/GetCoupanByName/{name:String}", (string name) =>
 {
